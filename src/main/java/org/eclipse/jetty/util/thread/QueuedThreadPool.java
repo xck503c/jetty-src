@@ -1,9 +1,9 @@
-package org.eclipse.jetty.io.util.thread;
+package org.eclipse.jetty.util.thread;
 
-import org.eclipse.jetty.io.util.BlockingArrayQueue;
-import org.eclipse.jetty.io.util.component.AbstractLifeCycle;
-import org.eclipse.jetty.io.util.component.AggregateLifeCycle;
-import org.eclipse.jetty.io.util.component.Dumpable;
+import org.eclipse.jetty.util.BlockingArrayQueue;
+import org.eclipse.jetty.util.component.AbstractLifeCycle;
+import org.eclipse.jetty.util.component.AggregateLifeCycle;
+import org.eclipse.jetty.util.component.Dumpable;
 
 import java.io.IOException;
 import java.util.*;

@@ -1,4 +1,4 @@
-package org.eclipse.jetty.io.util.component;
+package org.eclipse.jetty.util.component;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;

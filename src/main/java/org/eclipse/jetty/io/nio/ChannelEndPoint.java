@@ -15,7 +15,8 @@ import java.nio.channels.SocketChannel;
 
 /**
  * 操作socket的基础类，提供了默认实现的方法；
- * 1. 关闭，读写，获取地址，判断，设置阻塞时间等
+ * 1. 关闭输入输出流，关闭连接，从channel中读写数据；
+ * 2. 获取地址，一些判断，设置阻塞时间等
  */
 public class ChannelEndPoint implements EndPoint {
     protected final ByteChannel channel; //一个扩展接口，其下层有SocketChannel，FileChannel等

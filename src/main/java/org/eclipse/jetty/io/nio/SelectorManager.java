@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Selector管理器
  */
-public class SelectorManager {
+public abstract class SelectorManager {
 
     private int _selectSetNum = 3; //Selector的数量
     private AtomicLong _set = new AtomicLong(0L); //处理多少次请求
@@ -38,6 +38,9 @@ public class SelectorManager {
         selectSet.wakeup();
     }
 
+    //分派任务
+    public abstract boolean dispatch(Runnable task);
+
     public void doStart() throws Exception {
         //创建多个Selector
         _selectSets = new SelectorManager.SelectSet[_selectSetNum];
@@ -52,7 +55,6 @@ public class SelectorManager {
             System.out.println(t.getName()+" start!");
         }
     }
-
 
     /**
      * Selector的包装类，用来处理Acceptor拿到的连接
@@ -109,6 +111,10 @@ public class SelectorManager {
 
         public Selector get_selector() {
             return _selector;
+        }
+
+        public SelectorManager getManager(){
+            return SelectorManager.this;
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.eclipse.jetty.io.util;
+package org.eclipse.jetty.util;
 
 import java.util.*;
 import java.util.concurrent.BlockingQueue;

@@ -1,5 +1,7 @@
 package org.eclipse.jetty.io.nio;
 
+import org.eclipse.jetty.util.thread.ThreadPool;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
@@ -14,7 +16,9 @@ public class SelectChannelConnector {
     private int acceptors = 3; //有_acceptors条线程轮番去调用accept监听请求
     private Thread[] acceptorThreads;
 
-    private SelectorManager selectorManager = new SelectorManager();
+    private SelectorManager selectorManager = new ConnectorSelectorManager();
+
+    private ThreadPool threadPool;
 
     /**
      * 负责创建服务端channel
@@ -49,6 +53,27 @@ public class SelectChannelConnector {
         System.out.println(Thread.currentThread().getName() + " get request!");
         socketChannel.configureBlocking(false);
         selectorManager.register(socketChannel); //将连接放到Selector的队列中去处理
+    }
+
+    public ThreadPool getThreadPool(){
+        return threadPool;
+    }
+
+    /**
+     * 内部类，不给外人使用
+     */
+    private final class ConnectorSelectorManager extends SelectorManager{
+        private ConnectorSelectorManager() {}
+
+        @Override
+        public boolean dispatch(Runnable task){
+            ThreadPool pool = getThreadPool();
+            if(pool == null){
+
+            }
+
+            return pool.dispatch(task);
+        }
     }
 
     /**

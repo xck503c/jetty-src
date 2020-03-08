@@ -1,4 +1,4 @@
-package org.eclipse.jetty.io.util.component;
+package org.eclipse.jetty.util.component;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package org.eclipse.jetty.io.util.thread;
+package org.eclipse.jetty.util.thread;
 
 public interface ThreadPool {
     boolean dispatch(Runnable var1);
