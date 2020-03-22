@@ -1,5 +1,7 @@
 package org.eclipse.jetty.io.nio;
 
+import org.eclipse.jetty.io.EndPoint;
+
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -93,6 +95,10 @@ public abstract class SelectorManager {
                         SelectChannelEndPoint endPoint = newEndPoint(channel, this, key);
                         key.attach(endPoint);
                         endPoint.schedule(); //调度
+                    } else if (change instanceof EndPoint) {
+                        SelectChannelEndPoint endpointxxxx = (SelectChannelEndPoint)change;
+                        change = endpointxxxx.getChannel();
+                        endpointxxxx.doUpdateKey();
                     }
                 } catch (ClosedChannelException e) {
                     e.printStackTrace();
